@@ -4,7 +4,7 @@ Yet another lib to calculate Date.
 
 It can transfer to Day, hours, minutes and seconds(years and months calculation is not supported now).
 
-[Document Chinese Version](https://github.com/csvwolf/time-calculate/blob/master/README.zh.md)
+[Chinese Version Document](https://github.com/csvwolf/time-calculate/blob/master/README.zh.md)
 
 ## Before Use
 We add a concept(Class) Interval in the lib. So what is interval?
@@ -18,7 +18,7 @@ We defined the below abbreviations:
 - m: minutes
 - s: seconds
 
-So use can use `{ D: 1, h: 2, m: 3, s: 4 }` or `1D2h3m4s` to define the interval: one day, two hours, 3 minutes and 4 seconds.
+So you can use `{ D: 1, h: 2, m: 3, s: 4 }` or `1D2h3m4s` to define the interval: one day, two hours, 3 minutes and 4 seconds.
 
 That is Interval.
 
