@@ -1,8 +1,21 @@
 const { TIME_LIST_EN, TIME_UNIT } = require('./constant')
 
+const timestampToSeq = (timestamp) => {
+  const result = { D: 0, h: 0, m: 0, s: 0 }
+  const seq = ['D', 'h', 'm', 's']
+  seq.forEach(t => {
+    if (timestamp / TIME_UNIT[t] >= 1) {
+      result[t] = Math.floor(timestamp / TIME_UNIT[t])
+    }
+    timestamp %= TIME_UNIT[t]
+  })
+  return result
+}
+
 class Interval {
   constructor(timestamp = 0) {
     this.timestamp = timestamp
+    this.dateSeq = timestampToSeq(timestamp)
   }
 
   /**
@@ -11,17 +24,8 @@ class Interval {
    */
   format(format) {
     if (!format) return this.timestamp
-    const result = { D: 0, h: 0, m: 0, s: 0 }
-    let timestamp = this.timestamp
-    const seq = ['D', 'h', 'm', 's']
-    seq.forEach(t => {
-      if (timestamp / TIME_UNIT[t] >= 1) {
-        result[t] = Math.floor(timestamp / TIME_UNIT[t])
-      }
-      timestamp %= TIME_UNIT[t]
-    })
     return format.replace(/({([Dhms])})/g, (...args) => {
-      return result[args[2]]
+      return this.dateSeq[args[2]]
     })
   }
 
